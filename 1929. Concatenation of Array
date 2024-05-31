@@ -65,3 +65,19 @@ class Solution {
         return res;
     }
 }
+
+----------------------------------------
+Sol 3 - TC - O(n) sc - O(1)
+
+class Solution {
+    public int[] getConcatenation(int[] nums) {
+        int[] result = new int[nums.length * 2];
+        int k = 0, j = nums.length;
+        for(int i = 0; i < nums.length; i++)
+        {
+            result[k++] = nums[i];
+            result[j++] = nums[i];
+        }
+        return result;
+    }
+}
