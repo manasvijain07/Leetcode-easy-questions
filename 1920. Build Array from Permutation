@@ -35,7 +35,7 @@ Follow-up: Can you solve it without using an extra space (i.e., O(1) memory)?
 
 ------------------------------------------------
 
-Sol 1 - TC - O(n) SC - O(1)
+Sol 1 - TC - O(n) SC - O(n)
 
 class Solution {
     public int[] buildArray(int[] nums) {
@@ -55,4 +55,27 @@ class Solution {
 Sol 2 - TC - O(n) SC - O(1)
 https://www.youtube.com/watch?v=1svjL7Docuo
 
+class Solution {
+    public int[] buildArray(int[] nums) {
+        if(nums == null || nums.length == 0)
+            return nums;
 
+        final int CONST = 1001;
+
+        // converting to intermidiate array
+        for(int i = 0; i < nums.length; i++)
+        {
+            int a = nums[i];
+            int b = nums[a] % CONST;
+
+            nums[i] = a + CONST * b;
+        }
+
+        // fetching nums[nums[i]] value from intermidiate array
+        for(int i = 0; i < nums.length; i++)
+        {
+            nums[i] /= CONST;
+        }
+        return nums;
+    }
+}
