@@ -20,7 +20,8 @@ Constraints:
 
 -----------------------------------------
 
-Sol 1 - Tc - O(n) 
+Sol 1 - Recursion 
+Tc - O(n) 
 Sc - O(n)
 
     static Integer count_all_subsets(Integer n) {
@@ -33,3 +34,66 @@ Sc - O(n)
         
         return 2 * count_all_subsets(n - 1);
     }
+
+-------------------------------------
+
+Sol 2 - Iterative
+Tc - O(n)
+SC - O(1)
+
+    static Integer count_all_subsets(Integer n) {
+        // Write your code here.
+        int res = 1;
+        for(int i = 0; i < n; i++)
+        {
+            res *= 2;
+        }
+        return res;
+    }
+
+
+---------------------------------------------
+
+Sol 3 - Recursive - Divide and conqure
+TC - O(log n)
+SC - O(n)
+
+    static Integer count_all_subsets(Integer n) {
+        // Write your code here.
+        
+        if(n == 0)
+        {
+            return 1;
+        }
+        
+        int subresult = count_all_subsets(n/ 2);
+        int subcount = subresult * subresult;
+        
+        if(n % 2 != 0)
+        {
+            return subcount * 2;
+        }
+        return subcount;
+        
+    }
+
+
+
+--------------------------------------
+Sol 4 - Iterative Divide and conqure
+TC - O(log n)
+SC - O(1)
+
+
+    static Integer count_all_subsets(Integer n) {
+        // Write your code here.
+        
+        int res = 1;
+        for(int i = 0; i < n/2 ; i++)
+        {
+            res *= 2;
+        }
+        
+        return n % 2 == 0 ? res * res : 2 * res * res;
+    }
+
