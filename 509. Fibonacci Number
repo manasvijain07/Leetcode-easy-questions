@@ -82,17 +82,17 @@ class Solution {
             return n;
         }
 
-       return sum(n, 0, 1, 1, 0);
+       return sum(n, 0, 1, 1);
     }
 
-    public int sum(int n, int a, int b, int index, int c)
+    public int sum(int n, int a, int b, int index)
     {
         if(n == index)
         {
             return b;
         }
-        c = a + b;
-        return sum(n, b, c, index + 1, c);
+        
+        return sum(n, b, a + b, index + 1);
     }
 }
 
