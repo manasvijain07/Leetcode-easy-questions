@@ -142,4 +142,36 @@ class Solution {
         return res.stream().mapToInt(e -> e).toArray();
     }
 }
+
+--------------------------------------
+Sol 5 - Sorting + Recursion
+TC - O(n log n) SC - O(n)
+
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        return findIntersection(nums1, nums2, 0, 0, new ArrayList());
+    }
+
+    public int[] findIntersection(int[] nums1, int[] nums2, int i, int j, List<Integer> res)
+    {
+        if(i >= nums1.length || j >= nums2.length)
+        {
+            return res.stream().mapToInt(e -> e).toArray();
+        }
+
+        if(nums1[i] == nums2[j])
+        {
+            res.add(nums1[i]);
+            return findIntersection(nums1, nums2, i + 1, j + 1, res);
+        }
+        if(nums1[i] < nums2[j])
+        {
+            return findIntersection(nums1, nums2, i + 1, j, res);
+        }
+        return findIntersection(nums1, nums2, i, j + 1, res);
+
+    }
+}
 -------------------------------------
