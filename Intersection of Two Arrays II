@@ -117,5 +117,29 @@ class Solution {
 }
 
 -------------------------------------
+Sol 4 - Frequency count array
+TC - O(n) SC - O(min(m, n))
 
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        int[] freqcount = new int[1001];
+        List<Integer> res = new ArrayList<>();
+
+        for(int val : nums1)
+        {
+            freqcount[val] += 1;
+        }
+
+        for(int val : nums2)
+        {
+            if(freqcount[val] >= 1)
+            {
+                res.add(val);
+                freqcount[val] -= 1;
+            }
+        }
+
+        return res.stream().mapToInt(e -> e).toArray();
+    }
+}
 -------------------------------------
