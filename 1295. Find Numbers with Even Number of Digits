@@ -1,0 +1,85 @@
+1295. Find Numbers with Even Number of Digits
+
+Given an array nums of integers, return how many of them contain an even number of digits.
+
+ 
+
+Example 1:
+
+Input: nums = [12,345,2,6,7896]
+Output: 2
+Explanation: 
+12 contains 2 digits (even number of digits). 
+345 contains 3 digits (odd number of digits). 
+2 contains 1 digit (odd number of digits). 
+6 contains 1 digit (odd number of digits). 
+7896 contains 4 digits (even number of digits). 
+Therefore only 12 and 7896 contain an even number of digits.
+Example 2:
+
+Input: nums = [555,901,482,1771]
+Output: 1 
+Explanation: 
+Only 1771 contains an even number of digits.
+ 
+
+Constraints:
+
+1 <= nums.length <= 500
+1 <= nums[i] <= 105
+
+-------------------------------
+Sol 1 - brute force
+TC - O(n log m)
+SC - O(1)
+
+class Solution {
+    public int findNumbers(int[] nums) {
+        if(nums == null || nums.length == 0)
+        {
+            return 0;
+        }
+        
+        int count = 0;
+        for(int val : nums)
+        {
+            if(getDigits(val) % 2 == 0)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+    
+    public int getDigits(int n)
+    {
+        int count = 0;
+        
+        while(n != 0)
+        {
+            count++;
+            n = n/10;
+        }
+        return count;
+    }
+}
+
+-------------------------------------
+Sol 2 - converting to string
+TC - O(n log m)
+SC - O(log m)
+
+class Solution {
+    public int findNumbers(int[] nums) {
+        int count = 0;
+        for(int val : nums)
+        {
+            int length = String.valueOf(val).length();
+            if(length % 2== 0)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+}
